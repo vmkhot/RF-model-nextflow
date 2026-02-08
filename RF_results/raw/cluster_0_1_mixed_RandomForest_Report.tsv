@@ -1,0 +1,7 @@
+clust_num	RF_parameters	accuracy	precision	recall	f1	support	conf_matrix
+cluster_0_1_mixed	"RandomForestClassifier(max_features='log2', min_samples_split=5,
+                       n_estimators=5000)"	0.9282868525896414	0.9246231155778895	0.983957219251337	0.9533678756476683	187.0	"[[184   3]
+ [ 15  49]]"
+cluster_0_1_mixed	"RandomForestClassifier(max_features='log2', min_samples_split=5,
+                       n_estimators=5000)"	0.9282868525896414	0.9423076923076923	0.765625	0.8448275862068966	64.0	"[[184   3]
+ [ 15  49]]"

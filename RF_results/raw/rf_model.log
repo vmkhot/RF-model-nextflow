@@ -1,0 +1,56 @@
+/vast/ri65fin/mcp_structures/nextflow/bin/rf_model.py:34: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  data_df_numerical.reset_index(names='protein',inplace=True)
+/vast/ri65fin/mcp_structures/nextflow/bin/rf_model.py:35: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  data_df_numerical.loc[data_df_numerical['protein'].str.contains('IMG'), 'img_split'] = (data_df_numerical.loc[data_df_numerical['protein'].str.contains('IMG'), 'protein']
+/vast/ri65fin/mcp_structures/nextflow/bin/rf_model.py:44: DtypeWarning: Columns (6) have mixed types. Specify dtype option on import or set low_memory=False.
+  biomes_metadata_df = pd.read_csv(metadata_path, header=0, sep=',')
+                                                    0_M  ...  specific_ecosystem
+protein                                                  ...                    
+IMGVR_UViG_3300020042_007454|3300020042|Ga02066...    0  ...                 NaN
+IMGVR_UViG_3300042520_001074|3300042520|Ga04532...    0  ...                 NaN
+IMGVR_UViG_3300044644_000833|3300044644|Ga04537...    0  ...                 NaN
+IMGVR_UViG_3300042542_000643|3300042542|Ga04530...    0  ...                 NaN
+IMGVR_UViG_3300013372_000747|3300013372|Ga01779...    0  ...                 NaN
+...                                                 ...  ...                 ...
+IMGVR_UViG_3300032006_000877|3300032006|Ga03103...    0  ...                 NaN
+IMGVR_UViG_3300032320_000496|3300032320|Ga03353...    0  ...                 NaN
+IMGVR_UViG_3300039103_000100|3300039103|Ga01884...    0  ...                 NaN
+IMGVR_UViG_3300039103_000223|3300039103|Ga01884...    0  ...                 NaN
+IMGVR_UViG_3300039104_000062|3300039104|Ga01884...    0  ...                 NaN
+
+[576 rows x 5039 columns]
+Number of samples in each biome: ecosystem_type
+Freshwater    538
+Marine         38
+Name: ecosystem, dtype: int64
+Hyperparamter tuning... best parameters found: RandomForestClassifier(min_samples_split=10, n_estimators=1000)
+Accuracy: 0.9913793103448276
+Classification report:               precision    recall  f1-score   support
+
+           0       0.99      1.00      1.00       108
+           1       1.00      0.88      0.93         8
+
+   micro avg       0.99      0.99      0.99       116
+   macro avg       1.00      0.94      0.96       116
+weighted avg       0.99      0.99      0.99       116
+ samples avg       0.99      0.99      0.99       116
+
+confusion matrix: 
+ [[108   0]
+ [  1   7]]
+Number of features (5033) > 5000, shap values not calculated
+      index  shap_value  gini_imp cluster_num
+0     582_D           0  0.014826   cluster_0
+1     457_K           0  0.012962   cluster_0
+2      34_Q           0  0.012885   cluster_0
+3     524_T           0  0.012689   cluster_0
+4     182_G           0  0.012159   cluster_0
+...     ...         ...       ...         ...
+5028  346_W           0  0.000000   cluster_0
+5029  346_Y           0  0.000000   cluster_0
+5030  347_A           0  0.000000   cluster_0
+5031  347_G           0  0.000000   cluster_0
+5032  345_M           0  0.000000   cluster_0
+
+[5033 rows x 4 columns]
+cluster_0 finished... Model accuracy: 0.9913793103448276
