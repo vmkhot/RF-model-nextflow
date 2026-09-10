@@ -1,0 +1,39 @@
+read
+mol pqr "{pqrfile}"  # Load PQR file (Protein with charges and radii)
+end
+
+elec
+mg-auto
+mol 1
+
+fgcent {fgcent} # Fine grid center - PyMOL uses molecule center by default
+cgcent mol 1    # Coarse grid center - centered on the molecule
+fglen {fglen}   # Fine grid lengths (adjust to protein size)
+cglen {cglen}   # Coarse grid lengths (should cover entire protein)
+dime {dime}     # Grid dimensions (higher for better resolution)
+
+lpbe             # Linear Poisson-Boltzmann Equation
+bcfl mdh         # "Modified Debye-Hueckel" - better for seawater
+
+pdie 2.0         # Protein dielectric (interior)
+sdie 78.5        # Solvent dielectric (seawater)
+
+chgm spl2        # Charge mapping (spline for smooth calculation)
+srfm smol        # Smoothed surface - better for solvation effects
+swin 0.3         # Surface smoothing window (default for PyMOL)
+
+temp 310.0       # Temperature in Kelvin (37°C, physiological)
+sdens 10.0       # Surface density - affects accuracy
+
+calcenergy no    # Do not calculate energy (focus on potential map)
+calcforce no     # Do not calculate forces
+
+srad {srad}      # Solvent radius (1.4 for water, change for seawater)
+
+ion charge 1 conc 0.6 radius 2.0   # Na+ (positive ion), 0.6 M for seawater
+ion charge -1 conc 0.6 radius 2.0  # Cl- (negative ion), 0.6 M for seawater
+
+write pot dx "{mapfile}"  # Output potential map in DX format for PyMOL
+
+end
+quit
